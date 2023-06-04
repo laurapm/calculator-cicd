@@ -36,10 +36,9 @@ pipeline {
             script {
                 def jobName = env.JOB_NAME
                 def buildNumber = env.BUILD_NUMBER
-                def subject = "ERROR en $jobName #$buildNumber"
-                def body = "Revise el pipeline del trabajo $jobName, se ha producido un error en la ejecución #$buildNumber."
-                def to = "laura.perez211@comunidadunir.net"
-                emailext(body: content, mimeType: 'text/html', replyTo: '$DEFAULT_REPLYTO', subject: subject, to: to, attachLog: true )
+                mail to: 'laura.perez211@comunidadunir.net',
+                    subject: "Failure in $jobName #$buildNumber",
+                    body: "El trabajo $jobName #$buildNumber ha fallado. Por favor, revisa el pipeline."
             }
         }
     }
