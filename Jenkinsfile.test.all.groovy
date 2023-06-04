@@ -18,7 +18,7 @@ pipeline {
                     alwaysLinkToLastBuild: true,
                     keepAll: true,
                     reportDir: 'results',
-                    reportFiles: 'unit-test-report.html',
+                    reportFiles: 'unit_result.xml',
                     reportName: 'Unit Test Results'
                 ])
             }
@@ -32,7 +32,7 @@ pipeline {
                     alwaysLinkToLastBuild: true,
                     keepAll: true,
                     reportDir: 'results',
-                    reportFiles: 'api-test-report.html',
+                    reportFiles: 'api_result.xml',
                     reportName: 'API Test Results'
                 ])
             }
@@ -46,7 +46,7 @@ pipeline {
                     alwaysLinkToLastBuild: true,
                     keepAll: true,
                     reportDir: 'results',
-                    reportFiles: 'e2e-test-report.html',
+                    reportFiles: 'e2e-test-report.xml',
                     reportName: 'E2E Test Results'
                 ])
             }
