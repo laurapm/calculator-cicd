@@ -12,8 +12,7 @@ pipeline {
         stage('Unit tests') {
             steps {
                 sh 'make test-unit'
-                archiveArtifacts artifacts: 'results/*.xml'
-                archiveArtifacts artifacts: 'results/*.html'
+                archiveArtifacts artifacts: 'results/*'
                 publishHTML(target: [
                     allowMissing: false,
                     alwaysLinkToLastBuild: true,
@@ -27,8 +26,7 @@ pipeline {
         stage('API tests') {
             steps {
                 sh 'make test-api'
-                archiveArtifacts artifacts: 'results/*.xml'
-                archiveArtifacts artifacts: 'results/*.html'
+                archiveArtifacts artifacts: 'results/*.'
                 publishHTML(target: [
                     allowMissing: false,
                     alwaysLinkToLastBuild: true,
@@ -43,7 +41,6 @@ pipeline {
             steps {
                 sh 'make test-e2e'
                 archiveArtifacts artifacts: 'results/*.xml'
-                archiveArtifacts artifacts: 'results/*.html'
                 publishHTML(target: [
                     allowMissing: false,
                     alwaysLinkToLastBuild: true,
