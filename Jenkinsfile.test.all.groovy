@@ -41,5 +41,9 @@ pipeline {
                     body: "El trabajo $jobName #$buildNumber ha fallado. Por favor, revisa el pipeline."
             }
         }
+        success {
+            junit '**/TEST-*.xml'
+            step([$class: 'JUnitResultArchiver', testResults: '**/TEST-*.xml'])
+        }
     }
 }
