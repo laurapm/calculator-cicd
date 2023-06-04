@@ -32,5 +32,14 @@ pipeline {
         always {
             junit 'results/*_result.xml'
         }
+        failure {
+            script {
+                def jobName = env.JOB_NAME
+                def buildNumber = env.BUILD_NUMBER
+                mail to: 'laura.perez211@comunidadunir.net',
+                    subject: "Failure in $jobName #$buildNumber",
+                    body: "Revise el pipeline del trabajo $jobName, se ha producido un error en la ejecución #$buildNumber."
+            }
+        }
     }
 }
