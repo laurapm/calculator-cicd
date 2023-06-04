@@ -13,18 +13,42 @@ pipeline {
             steps {
                 sh 'make test-unit'
                 archiveArtifacts artifacts: 'results/*.xml'
+                publishHTML(target: [
+                    allowMissing: false,
+                    alwaysLinkToLastBuild: true,
+                    keepAll: true,
+                    reportDir: 'results',
+                    reportFiles: 'unit-test-report.html',
+                    reportName: 'Unit Test Results'
+                ])
             }
         }
         stage('API tests') {
             steps {
                 sh 'make test-api'
                 archiveArtifacts artifacts: 'results/*.xml'
+                publishHTML(target: [
+                    allowMissing: false,
+                    alwaysLinkToLastBuild: true,
+                    keepAll: true,
+                    reportDir: 'results',
+                    reportFiles: 'api-test-report.html',
+                    reportName: 'API Test Results'
+                ])
             }
         }
         stage('E2E tests') {
             steps {
                 sh 'make test-e2e'
                 archiveArtifacts artifacts: 'results/*.xml'
+                publishHTML(target: [
+                    allowMissing: false,
+                    alwaysLinkToLastBuild: true,
+                    keepAll: true,
+                    reportDir: 'results',
+                    reportFiles: 'e2e-test-report.html',
+                    reportName: 'E2E Test Results'
+                ])
             }
         }
     }
@@ -40,10 +64,6 @@ pipeline {
                     subject: "Failure in $jobName #$buildNumber",
                     body: "El trabajo $jobName #$buildNumber ha fallado. Por favor, revisa el pipeline."
             }
-        }
-        success {
-            junit '**/TEST-*.xml'
-            step([$class: 'JUnitResultArchiver', testResults: '**/TEST-*.xml'])
         }
     }
 }
