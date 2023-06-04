@@ -26,7 +26,7 @@ pipeline {
         stage('API tests') {
             steps {
                 sh 'make test-api'
-                archiveArtifacts artifacts: 'results/*.'
+                archiveArtifacts artifacts: 'results/*'
                 publishHTML(target: [
                     allowMissing: false,
                     alwaysLinkToLastBuild: true,
@@ -40,7 +40,7 @@ pipeline {
         stage('E2E tests') {
             steps {
                 sh 'make test-e2e'
-                archiveArtifacts artifacts: 'results/*.xml'
+                archiveArtifacts artifacts: 'results/*'
                 publishHTML(target: [
                     allowMissing: false,
                     alwaysLinkToLastBuild: true,
