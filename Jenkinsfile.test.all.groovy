@@ -13,12 +13,13 @@ pipeline {
             steps {
                 sh 'make test-unit'
                 archiveArtifacts artifacts: 'results/*.xml'
+                archiveArtifacts artifacts: 'results/*.html'
                 publishHTML(target: [
                     allowMissing: false,
                     alwaysLinkToLastBuild: true,
                     keepAll: true,
                     reportDir: 'results',
-                    reportFiles: 'unit_result.xml',
+                    reportFiles: 'unit_result.html',
                     reportName: 'Unit Test Results'
                 ])
             }
@@ -27,12 +28,13 @@ pipeline {
             steps {
                 sh 'make test-api'
                 archiveArtifacts artifacts: 'results/*.xml'
+                archiveArtifacts artifacts: 'results/*.html'
                 publishHTML(target: [
                     allowMissing: false,
                     alwaysLinkToLastBuild: true,
                     keepAll: true,
                     reportDir: 'results',
-                    reportFiles: 'api_result.xml',
+                    reportFiles: 'api_result.html',
                     reportName: 'API Test Results'
                 ])
             }
@@ -41,12 +43,13 @@ pipeline {
             steps {
                 sh 'make test-e2e'
                 archiveArtifacts artifacts: 'results/*.xml'
+                archiveArtifacts artifacts: 'results/*.html'
                 publishHTML(target: [
                     allowMissing: false,
                     alwaysLinkToLastBuild: true,
                     keepAll: true,
                     reportDir: 'results',
-                    reportFiles: 'e2e-test-report.xml',
+                    reportFiles: 'e2e-test-report.html',
                     reportName: 'E2E Test Results'
                 ])
             }
