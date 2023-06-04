@@ -18,7 +18,7 @@ pipeline {
                     alwaysLinkToLastBuild: true,
                     keepAll: true,
                     reportDir: 'results',
-                    reportFiles: 'unit_result.xml',
+                    reportFiles: 'coverage.xml',
                     reportName: 'Unit Test Results'
                 ])
             }
@@ -46,7 +46,7 @@ pipeline {
                     alwaysLinkToLastBuild: true,
                     keepAll: true,
                     reportDir: 'results',
-                    reportFiles: 'e2e-test-report.xml',
+                    reportFiles: 'cypress-result.xml',
                     reportName: 'E2E Test Results'
                 ])
             }
